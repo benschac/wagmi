@@ -26,6 +26,7 @@
     "test:build": "pnpm run --r --parallel test:build",
     "test:cov": "vitest run --coverage",
     "test:typecheck": "vitest typecheck",
+    "test:ui": "vitest --ui",
     "test:update": "vitest --update",
     "typecheck": "pnpm run --r --parallel typecheck && tsc --noEmit",
     "version:update": "bun .scripts/updateVersion.ts",
@@ -38,6 +39,7 @@
     "@types/bun": "^1.1.1",
     "@viem/anvil": "0.0.6",
     "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
     "@wagmi/test": "workspace:*",
     "bun": "^1.1.7",
     "glob": "^10.3.12",
@@ -66,8 +68,14 @@
     "pre-commit": "pnpm format && pnpm lint:fix"
   },
   "knip": {
-    "ignore": ["**/*.test-d.ts", "**/templates/**", "**/hardhat.config.js"],
-    "ignoreBinaries": ["only-allow"],
+    "ignore": [
+      "**/*.test-d.ts",
+      "**/templates/**",
+      "**/hardhat.config.js"
+    ],
+    "ignoreBinaries": [
+      "only-allow"
+    ],
     "ignoreWorkspaces": [
       "packages/register-tests/**",
       "packages/test",
@@ -84,23 +92,33 @@
           "src/exports/{config,index,plugins}.ts!",
           "types/*.d.ts!"
         ],
-        "ignore": ["test/{constants,setup,utils}.ts"]
+        "ignore": [
+          "test/{constants,setup,utils}.ts"
+        ]
       },
       "packages/connectors": {
         "entry": "src/exports/index.ts!",
-        "ignoreDependencies": ["@walletconnect/modal"]
+        "ignoreDependencies": [
+          "@walletconnect/modal"
+        ]
       },
       "packages/core": {
         "entry": "src/exports/{actions,chains,codegen,experimental,index,internal,query}.ts!",
-        "ignore": ["test/setup.ts"],
-        "ignoreDependencies": ["@tanstack/query-core"]
+        "ignore": [
+          "test/setup.ts"
+        ],
+        "ignoreDependencies": [
+          "@tanstack/query-core"
+        ]
       },
       "packages/create-wagmi": {
         "entry": "src/cli.ts!"
       },
       "packages/react": {
         "entry": "src/exports/{actions,chains,codegen,connectors,experimental,index,query}.ts!",
-        "ignore": ["test/setup.ts"]
+        "ignore": [
+          "test/setup.ts"
+        ]
       },
       "packages/test": {
         "entry": [
